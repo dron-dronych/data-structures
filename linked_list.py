@@ -1,16 +1,13 @@
 class LinkedList:
     def __init__(self, nodes):
         self.head = nodes[0]
-        self.tail = nodes[-1]
 
         i = 0
         while i <= len(nodes) - 2:
             nodes[i].next = nodes[i + 1]
-            nodes[i].tail = None
             i += 1
 
         nodes[len(nodes) - 1].next = None
-        nodes[len(nodes) - 1].tail = True
 
 
 class Node:
