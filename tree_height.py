@@ -6,20 +6,16 @@ class Tree:
         """
         assert len(nodes) == n, f'`nodes` should contain exactly {n} elements'
 
-        nodes_list = []
+        nodes_list = [Node(i) for i in range(n)]
 
         for i in range(n):
-            node = Node(i)
             parent = nodes[i]
 
             if parent == -1:
-                self.root = node
-                nodes_list.append(node)
-                continue
+                self.root = parent
 
-            node.parent = Node(parent)
-
-            nodes_list.append(node)
+            else:
+                nodes_list[parent].set_child(nodes_list[i])
 
         self.nodes = nodes_list
 
@@ -30,10 +26,13 @@ class Tree:
 class Node:
     def __init__(self, key):
         self.key = key
-        self.parent = None
+        self.children = []
+
+    def set_child(self, child_node):
+        self.children.append(child_node)
 
     def __repr__(self):
-        return f'Node(key={self.key}, parent={self.parent})'
+        return f'Node(key={self.key}, children={self.children})'
 
 
 
@@ -43,5 +42,6 @@ n = 5
 nodes = [4, -1, 4, 1, 1]
 
 tree = Tree(n, nodes)
-print(tree.nodes)
+for node in tree.nodes:
+    print(node)
 
