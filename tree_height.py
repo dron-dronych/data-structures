@@ -12,7 +12,7 @@ class Tree:
             parent = nodes[i]
 
             if parent == -1:
-                self.root = parent
+                self.root = nodes_list[i]
 
             else:
                 nodes_list[parent].set_child(nodes_list[i])
@@ -44,4 +44,6 @@ nodes = [4, -1, 4, 1, 1]
 tree = Tree(n, nodes)
 for node in tree.nodes:
     print(node)
+
+print(f'root: {tree.root}')
 
