@@ -19,8 +19,25 @@ class Tree:
 
         self.nodes = nodes_list
 
+    @property
     def height(self):
-        pass
+        if self.root is None:
+            return 0
+
+        height = 1
+
+        queue = []
+        queue.append(self.root)
+
+        while len(queue) != 0:
+            node = queue.pop(len(queue) - 1)
+
+            if len(node.children) > 0:
+                queue.extend(node.children)
+
+                height += 1
+
+        return height
 
 
 class Node:
@@ -35,15 +52,13 @@ class Node:
         return f'Node(key={self.key}, children={self.children})'
 
 
-
-
-
 n = 5
 nodes = [4, -1, 4, 1, 1]
 
 tree = Tree(n, nodes)
-for node in tree.nodes:
-    print(node)
+# for node in tree.nodes:
+#     print(node)
 
 print(f'root: {tree.root}')
+print(f'height is: {tree.height}')
 
