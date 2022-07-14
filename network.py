@@ -13,10 +13,7 @@ def process_packets(buffer_size, n_packets, packets):
     start_times = []
 
     for packet in packets:
-
-    # packet_id = 0
         if len(buffer) <= buffer_size:
-            # packet_arr, packet_proc = packets[packet_id]
             packet_arr, packet_proc = packet
             buffer.append(packet)
 
@@ -24,14 +21,15 @@ def process_packets(buffer_size, n_packets, packets):
                 start_time = 0
             else:
                 start_time = finish_times.pop(0)
-            start_times.append(start_time)
 
-            finish_time = start_time + packet_proc
-            finish_times.append(finish_time)
+            if start_time == packet_arr:
+                start_times.append(start_time)
 
-            # packet_id += 1
-        else:
-            start_times.append(-1)
+                finish_time = start_time + packet_proc
+                finish_times.append(finish_time)
+
+            else:
+                start_times.append(-1)
 
     return start_times
 
