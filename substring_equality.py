@@ -3,12 +3,12 @@ import random
 
 def substring_equality(string, a, b, l):
     """
-
+    quickly find if a substring1 and substring2 are equal
     :param string:
     :param a: start index if substring1
     :param b: start index of substring2
-    :param l: length of each susbtring
-    :return:
+    :param l: equal length of each substring
+    :return: 1 -- yes, 0 -- no
     """
     m1, m2 = 10 ** 9 + 7, 10 ** 9 + 9
     x = random.randint(1, 10 ** 9)
@@ -30,7 +30,7 @@ def substring_equality(string, a, b, l):
 def precompute_hashes(string, x, m):
     hashes = [None] * (len(string) + 1)
 
-    # due to recursive calc of the hash
+    # due to recursive calc of the hash; init w/ dummy to allow proper indexing
     hashes[0] = 0
 
     # we do 1 more because otherwise 1st char is left 0
@@ -38,6 +38,3 @@ def precompute_hashes(string, x, m):
         hashes[i] = (x * hashes[i - 1] + ord(string[i - 1])) % m
 
     return hashes
-
-
-print(substring_equality('trololo', 2, 4, 3))
