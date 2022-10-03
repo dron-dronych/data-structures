@@ -11,7 +11,7 @@ def rabin_karp_search(pat, text):
 
     h = precompute_hashes(text, len(pat), p, x)
 
-    for i in range(len(text) - len(pat)):
+    for i in range(len(text) - len(pat) + 1):
         if phash != h[i]:
             continue
 
@@ -43,10 +43,4 @@ def poly_hash(string, p, x):
     for i in range(len(string) - 1, -1, -1):
         hash_ = (hash_ * x + ord(string[i])) % p
 
-    # for i in range(len(string)):
-    #     hash_ += ord(string[i]) * (x ** i) % p
-
     return hash_
-
-
-print(rabin_karp_search('Test', 'testTesttesT'))
